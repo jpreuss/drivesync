@@ -126,7 +126,8 @@ class Synchronizer
   def download_file file, drive, update = false
     Log.log_message "#{update ? 'Updating' : 'Downloading'} file #{file.path} ..."
     #Make folder if it doesn't exist yet
-    path = file.path.sub(file.path.split('/')[-1], '')
+    #path = file.path.sub(file.path.split('/')[-1], '')
+    path = file.path.reverse.sub(file.path.reverse.split('/')[0], '').reverse
     FileUtils.mkdir_p File.join(@config['drive_path'], path)
 
     drive.download file, File.join(@config['drive_path'], file.path)
